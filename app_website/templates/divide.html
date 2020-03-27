@@ -1,5 +1,51 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Divide</h1>
+    <br>
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+            <h1>Division</h1>
+        </div>
+        <div class="card-body">
+            {% if checker %}
+            <div class="alert {{alert}} alert-dismissible fade show" role="alert">
+                <h4 class="alert-heading">{{checker}}</h4>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <hr>
+                <p class="mb-0">{{statement}}</p>
+            </div>
+            {% endif %}
+            <br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-1 col-md-1"></div>
+                    <div class="col-lg-4 col-md-4" style="background-image:url('static/images/style.jpg');height:40vh;">   
+                        <h1 style="font-size:130pt; text-align:center;">{{num_1}}</h1>
+                    </div>
+                    <div class="col-lg-2 col-md-2">
+                        <h1 style="font-size:130pt; text-align:center;">/</h1>
+                    </div>
+                    <div class="col-lg-4 col-md-4" style="background-image:url('static/images/style.jpg');height:40vh;">   
+                        <h1 style="font-size:130pt; text-align:center;">{{num_2}}</h1>
+                    </div>
+                    <div class="col-lg-1 col-md-1"></div>
+                </div>
+            </div>
+            <br><br>
+            <form action="{% url 'divide' %}" method="post">
+                {% csrf_token %}
+                <input name="num_1" value="{{num_1}}" type="text" hidden="hidden">
+                <input name="num_2" value="{{num_2}}" type="text" hidden="hidden">
+                <div class="form-group">
+                    <input type="text" name="answer" placeholder="Type Your Answer Here." class="form-control" id="add_answer" aria-describedby="divide">
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock  %}
