@@ -6,7 +6,20 @@ def home(request):
 
 
 def add(request):
-    return render(request, 'add.html', {})
+    from random import randint
+
+    num_1 = randint(0, 100)
+    num_2 = randint(0, 100)
+    if request.method == "POST":
+        old_num_1 = request.POST['num_1']
+        old_num_2 = request.POST['num_2']
+        ans = old_num_1+old_num_2
+        answer = request.POST['answer']
+        return render(request, 'add.html', {'answer': answer})
+    return render(request, 'add.html', {
+        'num_1': num_1,
+        'num_2': num_2
+    })
 
 
 def subtract(request):

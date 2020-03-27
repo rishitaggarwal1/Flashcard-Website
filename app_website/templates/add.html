@@ -1,5 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Add</h1>
+    <br>
+    <div class="card text-center">
+        <div class="card-header">
+            <h1>Addition</h1>
+        </div>
+        <div class="card-body">
+            {{num_1}}+{{num_2}}
+            <form action="{% url 'add' %}" method="post">
+                {% csrf_token %}
+                <input name="num_1" value="{{num_1}}" type="text" hidden="hidden">
+                <input name="num_2" value={{num_2}} type="text" hidden="hidden">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" name="answer" placeholder="Type Your Answer Here." class="form-control" id="add_answer" aria-describedby="add">
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
 {% endblock  %}
