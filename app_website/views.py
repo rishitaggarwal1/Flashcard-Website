@@ -13,9 +13,18 @@ def add(request):
     if request.method == "POST":
         old_num_1 = request.POST['num_1']
         old_num_2 = request.POST['num_2']
-        ans = old_num_1+old_num_2
+        correct_ans = int(old_num_1)+int(old_num_2)
         answer = request.POST['answer']
-        return render(request, 'add.html', {'answer': answer})
+        if int(answer) == correct_ans:
+            checker = "Correct!  "+old_num_1 + " + " + old_num_2 + " = "+answer
+        else:
+            checker = "Incorrect! "+old_num_1 + " + " + old_num_2 + " is not = "+answer
+        return render(request, 'add.html', {
+            'answer': answer,
+            'checker': checker,
+            'num_1': num_1,
+            'num_2': num_2
+        })
     return render(request, 'add.html', {
         'num_1': num_1,
         'num_2': num_2
